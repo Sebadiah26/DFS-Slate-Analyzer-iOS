@@ -6,12 +6,12 @@
             xmlns:viewmodel="clr-namespace:SlateAnalyzer.ViewModel"
             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:DataType="viewmodel:EntriesViewModel">
-    <Grid
+    <Grid 
         ColumnDefinitions="*,*"
         ColumnSpacing="5"
         RowDefinitions="*,Auto"
         RowSpacing="0"
-        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Blue200Accent}}">
         <RefreshView
             Grid.ColumnSpan="2"
             Command="{Binding GetEntriesCommand}"
@@ -22,25 +22,25 @@
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:EntryModel">
-                    <Grid Padding="10" HorizontalOptions="Fill">
-                        <Frame HeightRequest="125" >
+                    <Grid Padding="6" HorizontalOptions="Fill">
+                                <Frame HeightRequest="80" BackgroundColor="{StaticResource Blue300Accent}" >
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer 
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EntriesViewModel}}, Path=GoToDetailsCommand}"
                                                 CommandParameter="{Binding .}"/>
                             </Frame.GestureRecognizers>
-                            <Grid Padding="0" ColumnDefinitions="125,*">
-                                <!--<Image
+                            <Grid Padding="1" ColumnDefinitions="65,*">
+                                <Image
                                                 Aspect="AspectFill"
-                                                HeightRequest="125"
-                                                Source="{Binding Image}"
-                                                WidthRequest="125" />-->
-                                <VerticalStackLayout
-                                                VerticalOptions="Center"
+                                                HeightRequest="60"
+                                                Source="fire.JPG"
+                                                WidthRequest="60" />
+                                <VerticalStackLayout 
+                                                VerticalOptions="Start"
                                                 Grid.Column="1"
-                                                Padding="10">
-                                    <Label Text="{Binding Name}" />
-                                    <Label  Text="{Binding Lineup}" />
+                                                Padding="2">
+                                            <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                                            <Label Style="{StaticResource MediumLabel}"  Text="{Binding Points}" />
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
@@ -92,7 +92,7 @@
             Command="{Binding GetEntriesCommand}"
             IsEnabled="{Binding IsNotBusy}"
             
-            Text="Get Monkeys" />
+            Text="Live Standings" />
         <Button
             Grid.Row="1"
             Grid.Column="1"
@@ -100,7 +100,7 @@
             Command="{Binding GetClosestEntryCommand}"
             IsEnabled="{Binding IsNotBusy}"
             
-            Text="Find Closest" />
+            Text="---" />
         <ActivityIndicator
             Grid.RowSpan="2"
             Grid.ColumnSpan="2"
