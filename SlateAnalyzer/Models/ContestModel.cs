@@ -1,5 +1,5 @@
 ﻿
-namespace SlateAnalyzer.Model;
+namespace SlateAnalyzer.Models;
 
 public class ContestModel : DFSSlateAnalyzerCore.Models.ContestModel
 {

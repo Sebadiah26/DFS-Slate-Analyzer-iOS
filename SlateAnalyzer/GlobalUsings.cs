@@ -1,8 +1,8 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using SlateAnalyzer.Services;
-global using SlateAnalyzer.ViewModel;
-global using SlateAnalyzer.View;
+global using SlateAnalyzer.ViewModels;
+global using SlateAnalyzer.Views;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Diagnostics;

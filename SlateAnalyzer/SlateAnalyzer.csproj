@@ -6,16 +6,12 @@
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-		<CodesignKey>Apple Development: Created via API (8C7HHVMP49)</CodesignKey>
-		<CodesignProvision>VS: com.companyname.SlateAnalyzer Development</CodesignProvision>
-		<ProvisioningType>automatic</ProvisioningType>
-	</PropertyGroup>
+	
 	<PropertyGroup>
 		<UseShortFileNames>True</UseShortFileNames>
 	</PropertyGroup>
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
@@ -28,9 +24,10 @@
 		<!-- Display name -->
 		<ApplicationTitle>SlateAnalyzer</ApplicationTitle>
 
-		<!-- App Identifier -->
+		<!--  App Identifier  -->
 		<ApplicationId>com.companyname.SlateAnalyzer</ApplicationId>
 		<ApplicationIdGuid>087944fb-2c2f-43dd-b4a2-ef4ff62b2f42</ApplicationIdGuid>
+
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -43,18 +40,30 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
-
+	
+	
+<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+		<CodesignKey>Apple Development: Created via API (7553XS359W)</CodesignKey>
+	</PropertyGroup>
+	
 	
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <MtouchDebug>True</MtouchDebug>
 	  <MtouchProfiling>True</MtouchProfiling>
 	</PropertyGroup>
+	
+	
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
-	  <MtouchDebug>True</MtouchDebug>
-	  <MtouchProfiling>True</MtouchProfiling>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'" />
+	
+	
+
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+	  <ProvisioningType>automatic</ProvisioningType>
+	  <CodesignProvision>VS: com.companyname.SlateAnalyzer Development</CodesignProvision>
 	</PropertyGroup>
+
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -92,21 +101,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="SplashPage.xaml.cs">
-	    <DependentUpon>SplashPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="View\EntriesPage.xaml.cs">
+	  <Compile Update="Views\EntriesPage.xaml.cs">
 	    <DependentUpon>EntriesPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\DetailsPage.xaml">
+	  <MauiXaml Update="Views\DetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\EntriesPage.xaml">
+	  <MauiXaml Update="Views\EntriesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionSlateAnalyzerHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

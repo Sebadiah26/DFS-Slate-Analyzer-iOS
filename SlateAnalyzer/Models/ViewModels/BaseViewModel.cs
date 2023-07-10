@@ -1,6 +1,6 @@
 ﻿
 
-namespace SlateAnalyzer.ViewModel;
+namespace SlateAnalyzer.ViewModels;
 
 public partial class BaseViewModel : ObservableObject
 {

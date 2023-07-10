@@ -21,7 +21,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ContestService>();
         builder.Services.AddSingleton<EntriesViewModel>();
         builder.Services.AddSingleton<EntriesPage>();
-        builder.Services.AddSingleton<SplashPage>();
+        builder.Services.AddSingleton<MainPage>();
 
         builder.Services.AddTransient<EntryDetailsViewModel>();
         builder.Services.AddTransient<DetailsPage>();

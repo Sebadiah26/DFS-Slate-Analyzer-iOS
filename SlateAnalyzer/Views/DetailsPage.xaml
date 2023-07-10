@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SlateAnalyzer.Views.DetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:models="clr-namespace:SlateAnalyzer.Models"
+    xmlns:viewModels="clr-namespace:SlateAnalyzer.ViewModels"
+     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="{Binding Entry.Name}"
+    x:DataType="viewModels:EntryDetailsViewModel">
+    
+    <ContentPage.BindingContext>
+        <viewModels:EntryDetailsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView BackgroundColor="{StaticResource Gray600}">
+        <Grid RowDefinitions="Auto,Auto,*">
+            <BoxView
+                BackgroundColor="{StaticResource Gray600}"
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"/>
+            <Image 
+                        Aspect="AspectFill"
+                        HeightRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                       Source="fire.JPG"
+                       WidthRequest="160" />
+            
+            <Border     StrokeShape="RoundRectangle 80"
+                    Stroke="White"
+                    StrokeThickness="6"
+                    HeightRequest="160"
+                    WidthRequest="160"
+                    Margin="0,8,0,0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+               
+
+            </Border>
+
+            <Label BackgroundColor="{StaticResource Gray500}"  Style="{StaticResource LargeLabel}" 
+                   Grid.Row="1"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   Text="{Binding Entry.Name}" 
+                   HorizontalOptions="Center"
+                   Margin="10,10,10,8"/>
+
+            <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
+              
+                <!--<Button Text="Show on Map" 
+                        Command="{Binding OpenMapCommand}"
+                        HorizontalOptions="Center" 
+                        WidthRequest="200" 
+                        Margin="8"
+                        Style="{StaticResource ButtonOutline}"/>-->
+
+
+                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.Rank, StringFormat='Rank: {0}'}" />
+                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.EstimatedPointsRank, StringFormat='Estimated Rank: {0}'}" />
+                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.EstimatedPoints, StringFormat='Estimated Points: {0}'}" />
+                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.Points, StringFormat='Points: {0}'}" />
+                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.Drafted, StringFormat='Drafted: {0}%'}" />
+
+                <CollectionView ItemsSource="{Binding EntryMembers}"
+                        SelectionMode="None">
+                    <CollectionView.ItemTemplate  >
+                        <DataTemplate x:DataType="models:EntryMemberModel">
+
+                            <Grid Padding="5,5"  ColumnDefinitions="*,*"  >
+                                <Frame  Grid.ColumnSpan="2" BackgroundColor="{StaticResource Gray600}" >
+
+
+
+                                    <HorizontalStackLayout   Grid.ColumnSpan="2" HeightRequest="60" >
+                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />
+                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding EntryMemberPlayerName }" LineBreakMode="NoWrap"   />
+
+                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Position}"/>
+                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Player.Points}"/>
+
+
+
+                                    </HorizontalStackLayout>
+
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

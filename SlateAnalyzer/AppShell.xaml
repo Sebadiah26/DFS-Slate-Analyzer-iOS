@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
+<Shell BackgroundColor="{StaticResource Gray600}"
     x:Class="SlateAnalyzer.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:view="clr-namespace:SlateAnalyzer.View"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:view="clr-namespace:SlateAnalyzer.Views"
+    Title="DFS Analyzer">
 
-    <ShellContent
-        Title="Home"
-       ContentTemplate="{DataTemplate view:EntriesPage}"
-        Route="EntriesPage" />
+
+
+    <TabBar  >
+
+        <Tab  Style="{StaticResource MediumLabel}" Title="Home">
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"/>
+        </Tab>
+        
+        <Tab       Title="Scores">
+            <ShellContent
+            Title="DFS Analyzer"
+           ContentTemplate="{DataTemplate view:EntriesPage}"
+            Route="EntriesPage" />  
+        </Tab>
+    </TabBar>
+
+   
 
 </Shell>
+    
+    
+<!--Shell.FlyoutBehavior="Disabled"-->

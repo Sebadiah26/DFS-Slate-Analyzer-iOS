@@ -23,15 +23,15 @@ public class ContestService
     List<EntryModel> entryList;
     ContestModel contestModel = new ContestModel();
 
-    public async Task<List<EntryModel>> GetEntries()
+    public async Task<ContestModel> GetContest()
     {
-        if (entryList?.Count > 0)
-            return entryList;
-
+        if (contestModel.Entries.Count > 0)
+            return contestModel;
+       
         // Online
         string baseURL = "https://www.craigkielinski.com/api/";
-        contestModel.ContestId = 0;
-        string path = baseURL + "contest/" + contestModel.ContestId + "/" + "02-23-23" + "/" + "blah";
+        contestModel.ContestID = 0;
+        string path = baseURL + "contest/getcontest/" + contestModel.ContestID + "/" + "02-23-23" + "/" + "blah";
 
         var response = await httpClient.GetAsync(path);
 
@@ -73,7 +73,7 @@ public class ContestService
         //var contents = await reader.ReadToEndAsync();
         //monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonkey);
 
-        return (await response.EnsureSuccessStatusCode().Content.ReadAsAsync<ContestModel>()).Entries; 
+        return (await response.EnsureSuccessStatusCode().Content.ReadAsAsync<ContestModel>()); 
     }
 }
 //        //[HttpGet(Name = "GetContest")]

@@ -1,11 +1,12 @@
 ﻿using SlateAnalyzer.Services;
-using SlateAnalyzer.View;
+using SlateAnalyzer.Views;
 
-namespace SlateAnalyzer.ViewModel;
+namespace SlateAnalyzer.ViewModels;
 
 public partial class EntriesViewModel  : BaseViewModel
 {
     public ObservableCollection<EntryModel> Entries { get; } = new();
+    public ContestModel Contest { get; set; } = new();
     public EntryModel Entry { get; } = new();
     ContestService contestService;
     IConnectivity connectivity;
@@ -50,18 +51,19 @@ public partial class EntriesViewModel  : BaseViewModel
             }
 
             IsBusy = true;
-            var entries = await contestService.GetEntries();
+
+            this.Contest = await contestService.GetContest();
 
             if(Entries.Count != 0)
                 Entries.Clear();
 
-            foreach(var entry in entries)
+            foreach(var entry in Contest.Entries)
                 Entries.Add(entry);
 
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Unable to get monkeys: {ex.Message}");
+            Debug.WriteLine($"Unable to get contest: {ex.Message}");
             await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
         }
         finally

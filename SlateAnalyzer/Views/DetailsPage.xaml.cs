@@ -1,4 +1,4 @@
-namespace SlateAnalyzer.View;
+namespace SlateAnalyzer.Views;
 
 public partial class DetailsPage : ContentPage
 {
