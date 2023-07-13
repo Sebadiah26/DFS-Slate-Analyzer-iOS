@@ -14,7 +14,7 @@
     </ContentPage.BindingContext>
 
     <ScrollView BackgroundColor="{StaticResource Gray600}">
-        <Grid RowDefinitions="Auto,Auto,*">
+        <Grid RowDefinitions="Auto,Auto,*"  Padding="5">
             <BoxView
                 BackgroundColor="{StaticResource Gray600}"
                 Grid.RowSpan="2"
@@ -48,7 +48,7 @@
                    HorizontalOptions="Center"
                    Margin="10,10,10,8"/>
 
-            <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
+            <VerticalStackLayout Grid.Row="2" Padding="3" Spacing="3">
               
                 <!--<Button Text="Show on Map" 
                         Command="{Binding OpenMapCommand}"
@@ -66,15 +66,15 @@
 
                 <CollectionView ItemsSource="{Binding EntryMembers}"
                         SelectionMode="None">
-                    <CollectionView.ItemTemplate  >
+                    <CollectionView.ItemTemplate Padding="0" Spacing="0" >
                         <DataTemplate x:DataType="models:EntryMemberModel">
 
-                            <Grid Padding="5,5"  ColumnDefinitions="*,*"  >
-                                <Frame  Grid.ColumnSpan="2" BackgroundColor="{StaticResource Gray600}" >
+                            <Grid    ColumnDefinitions="*,*"  >
+                                <Frame Padding="1"  Grid.ColumnSpan="2" BackgroundColor="{StaticResource Gray600}" >
 
 
 
-                                    <HorizontalStackLayout   Grid.ColumnSpan="2" HeightRequest="60" >
+                                    <HorizontalStackLayout   Grid.ColumnSpan="2"  >
                                         <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />
                                         <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding EntryMemberPlayerName }" LineBreakMode="NoWrap"   />
 

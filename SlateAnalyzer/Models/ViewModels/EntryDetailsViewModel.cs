@@ -11,9 +11,9 @@ public partial class EntryDetailsViewModel : BaseViewModel, IQueryAttributable, 
     private EntryModel entry;
 
     //public List<EntryMemberModel> EntryMembers { get; set; } = new();
-    
-    //public EntryModel Entry { get; set; } = new();
 
+    //public EntryModel Entry { get; set; } = new();
+    public event PropertyChangedEventHandler PropertyChanged;
 
     // public EntryMemberModel EntryMember { get; } = new();
 
@@ -23,13 +23,19 @@ public partial class EntryDetailsViewModel : BaseViewModel, IQueryAttributable, 
     public List<EntryMemberModel> EntryMembers
     {
         get => this.entryMember;
-        private set => this.entryMember = value;
+        private set
+        {
+            this.entryMember = value;
+            OnPropertyChanged();
+        }
     }
 
     public EntryModel Entry
     {
         get => this.entry;
-        private set => this.entry = value;
+        private set { this.entry = value;
+            OnPropertyChanged();
+        }
     }
 
     //[ObservableProperty]
@@ -38,7 +44,8 @@ public partial class EntryDetailsViewModel : BaseViewModel, IQueryAttributable, 
     //[ObservableProperty]
     //EntryMemberModel entryMember;
 
-
+    public void OnPropertyChanged([CallerMemberName] string name = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
     void IQueryAttributable.ApplyQueryAttributes(IDictionary<string, object> query)
     {
