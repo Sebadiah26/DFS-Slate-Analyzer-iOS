@@ -1,7 +1,8 @@
 ﻿
 namespace SlateAnalyzer.Models;
 
-public class EntryMemberModel : DFSSlateAnalyzerCore.Models.EntryMemberModel
+//[ObservableObject]
+public partial class AppEntryMemberModel : DFSSlateAnalyzerCore.Models.EntryMemberModel
 {
    
 }

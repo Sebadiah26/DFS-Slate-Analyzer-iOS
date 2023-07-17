@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AppActions.Icons.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace SlateAnalyzer;
 
@@ -9,11 +10,14 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+          
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+                fonts.AddFont("HELVETICANEUELTSTD-BDIT.OTF", "HelveticaLtStdBoldItalic");
+                fonts.AddFont("COOPBL.ttf", "CoopBl");
+            });
         builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
         builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
         builder.Services.AddSingleton<IMap>(Map.Default);
@@ -25,6 +29,8 @@ public static class MauiProgram
 
         builder.Services.AddTransient<EntryDetailsViewModel>();
         builder.Services.AddTransient<DetailsPage>();
+
+
 
 #if DEBUG
         builder.Logging.AddDebug();

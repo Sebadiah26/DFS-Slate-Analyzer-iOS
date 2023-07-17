@@ -67,7 +67,7 @@
                 <CollectionView ItemsSource="{Binding EntryMembers}"
                         SelectionMode="None">
                     <CollectionView.ItemTemplate Padding="0" Spacing="0" >
-                        <DataTemplate x:DataType="models:EntryMemberModel">
+                        <DataTemplate x:DataType="models:AppEntryMemberModel">
 
                             <Grid    ColumnDefinitions="*,*"  >
                                 <Frame Padding="1"  Grid.ColumnSpan="2" BackgroundColor="{StaticResource Gray600}" >

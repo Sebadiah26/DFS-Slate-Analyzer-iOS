@@ -1,16 +1,35 @@
 ﻿using SlateAnalyzer.Services;
 using SlateAnalyzer.Views;
+using SlateAnalyzer.Models;
+//using ContestModel = SlateAnalyzer.Models.ContestModel;
+//using EntryModel = SlateAnalyzer.Models.EntryModel;
 
 namespace SlateAnalyzer.ViewModels;
 
-public partial class EntriesViewModel  : BaseViewModel
+public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
 {
     public ObservableCollection<EntryModel> Entries { get; } = new();
-    public ContestModel Contest { get; set; } = new();
-    public EntryModel Entry { get; } = new();
+
+    
+    public ContestModel  contest { get; set; } = new();
+    public EntryModel Entry { get; set; } = new();
+
     ContestService contestService;
     IConnectivity connectivity;
     IGeolocation geolocation;
+
+   // public event PropertyChangedEventHandler PropertyChanged;
+
+    public ContestModel Contest
+    {
+        get => this.contest;
+        private set
+        {
+            this.contest = value;
+            OnPropertyChanged();
+        }
+    }
+
 
     public EntriesViewModel(ContestService contestService, IConnectivity connectivity, IGeolocation geolocation)
     {
@@ -18,6 +37,8 @@ public partial class EntriesViewModel  : BaseViewModel
         this.contestService = contestService;
         this.connectivity = connectivity;
         this.geolocation = geolocation;
+        //EntrySize = 100;
+        //TextSize = "SmallLabel";
     }
     
     [RelayCommand]
@@ -35,6 +56,12 @@ public partial class EntriesViewModel  : BaseViewModel
     [ObservableProperty]
     bool isRefreshing;
 
+    //[ObservableProperty]
+    //int entrySize;
+
+    //[ObservableProperty]
+    //string textSize;
+
     [RelayCommand]
     async Task GetEntriesAsync()
     {
@@ -50,14 +77,19 @@ public partial class EntriesViewModel  : BaseViewModel
                 return;
             }
 
+            IsRefreshing = true;
             IsBusy = true;
 
-            this.Contest = await contestService.GetContest();
+          
 
-            if(Entries.Count != 0)
+            this.Contest = await contestService.GetContest(); 
+
+           
+
+            if (Entries.Count != 0)
                 Entries.Clear();
 
-            foreach(var entry in Contest.Entries)
+            foreach(var entry in this.Contest.Entries)
                 Entries.Add(entry);
 
         }
@@ -110,4 +142,8 @@ public partial class EntriesViewModel  : BaseViewModel
           //  await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
         }
     }
+
+    //public void OnPropertyChanged([CallerMemberName] string name = "") =>
+    //       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
 }

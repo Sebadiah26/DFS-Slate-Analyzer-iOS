@@ -3,6 +3,7 @@
 using System.Net.Http.Json;
 using DFSSlateAnalyzerCore;
 using DFSSlateAnalyzerCore.Models;
+using static System.Net.WebRequestMethods;
 //using Microsoft.IdentityModel.Tokens;
 //using Windows.Media.Protection.PlayReady;
 //using static System.Net.WebRequestMethods;
@@ -30,9 +31,11 @@ public class ContestService
        
         // Online
         string baseURL = "https://www.craigkielinski.com/api/";
+        //baseURL = "http://localhost:44404/";
+
         contestModel.ContestID = 0;
         string path = baseURL + "contest/getcontest/" + contestModel.ContestID + "/" + "02-23-23" + "/" + "blah";
-
+   
         var response = await httpClient.GetAsync(path);
 
         //var response2 = await response.ReadContentAs<ContestModel>();

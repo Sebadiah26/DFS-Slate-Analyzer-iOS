@@ -27,8 +27,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/appicon.appiconset</string>
+	<string>Assets.xcassets/appicon2.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string>DFS GameDay Live</string>
 </dict>
 </plist>

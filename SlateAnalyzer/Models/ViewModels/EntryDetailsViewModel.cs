@@ -10,12 +10,9 @@ public partial class EntryDetailsViewModel : BaseViewModel, IQueryAttributable, 
     private List<EntryMemberModel> entryMember;
     private EntryModel entry;
 
-    //public List<EntryMemberModel> EntryMembers { get; set; } = new();
-
-    //public EntryModel Entry { get; set; } = new();
+   
     public event PropertyChangedEventHandler PropertyChanged;
 
-    // public EntryMemberModel EntryMember { get; } = new();
 
     public EntryDetailsViewModel()
     { }
@@ -38,11 +35,6 @@ public partial class EntryDetailsViewModel : BaseViewModel, IQueryAttributable, 
         }
     }
 
-    //[ObservableProperty]
-    //EntryModel entry;
-
-    //[ObservableProperty]
-    //EntryMemberModel entryMember;
 
     public void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

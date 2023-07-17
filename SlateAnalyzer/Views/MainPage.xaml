@@ -4,36 +4,41 @@
              x:Class="SlateAnalyzer.Views.MainPage">
 
     <ScrollView>
+        
         <VerticalStackLayout
+             Margin="0,100,0,0"
             Spacing="25"
             Padding="30,0"
-            VerticalOptions="Center">
+            VerticalOptions="Fill">
+
+           
+
+            <Label   Style="{StaticResource MediumHeaderLabel}" 
+                Text="DFS GameDay Live"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="34"
+                HorizontalOptions="Center"  />
 
             <Image
-                Source="dotnet_bot.png"
+                Source="{AppThemeBinding Light=logo_trans_white.PNG, Dark=logo_trans_dark.PNG}"
+                
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
+                HeightRequest="400"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
+            <Label   Style="{StaticResource MediumHeaderLabel}" 
+                Text="See where you really stand!"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
+                FontSize="16"
                 HorizontalOptions="Center" />
 
-            <Button
+            <!--<Button
                 x:Name="CounterBtn"
                 Text="Click me"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" />-->
 
         </VerticalStackLayout>
     </ScrollView>
