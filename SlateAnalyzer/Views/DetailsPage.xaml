@@ -79,7 +79,7 @@
 
 
 
-                                    <HorizontalStackLayout   Grid.ColumnSpan="2"  >
+                                    <HorizontalStackLayout HorizontalOptions="FillAndExpand"   Grid.ColumnSpan="2"  >
                                         <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />
                                         <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding EntryMemberPlayerName }" LineBreakMode="NoWrap"   />
 
