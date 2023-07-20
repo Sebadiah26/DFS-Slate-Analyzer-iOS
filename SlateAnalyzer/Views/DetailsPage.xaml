@@ -13,40 +13,45 @@
         <viewModels:EntryDetailsViewModel />
     </ContentPage.BindingContext>
 
-    <ScrollView BackgroundColor="{StaticResource Gray600}">
+    <ScrollView BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
         <Grid RowDefinitions="Auto,Auto,*"  Padding="5">
+            <Border >
             <BoxView
-                BackgroundColor="{StaticResource Gray600}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                 Grid.RowSpan="2"
                 HorizontalOptions="Fill"
-                VerticalOptions="Fill"/>
-            <Image 
-                        Aspect="AspectFill"
-                        HeightRequest="160"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                       Source="fire.JPG"
-                       WidthRequest="160" />
-            
-            <Border     StrokeShape="RoundRectangle 80"
-                    Stroke="White"
+                VerticalOptions="Fill"
+               />
+            </Border>
+
+            <Border   StrokeShape="RoundRectangle 80"
+                    Stroke="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"
                     StrokeThickness="6"
                     HeightRequest="160"
                     WidthRequest="160"
                     Margin="0,8,0,0"
                     HorizontalOptions="Center"
                     VerticalOptions="Center">
-               
+                <Image  
+                        Aspect="AspectFill"
+                        
+                        
+                       Source="fire.JPG"
+                       />
 
             </Border>
-
-            <Label BackgroundColor="{StaticResource Gray500}"  Style="{StaticResource LargeLabel}" 
+          
+          
+            
+            <Label BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"  Style="{StaticResource LargeLabel}" 
                    Grid.Row="1"
-                   TextColor="White"
+                   TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"
                    FontAttributes="Bold"
                    Text="{Binding Entry.Name}" 
                    HorizontalOptions="Center"
                    Margin="10,10,10,8"/>
+
+
 
             <VerticalStackLayout Grid.Row="2" Padding="3" Spacing="3">
               
@@ -58,11 +63,11 @@
                         Style="{StaticResource ButtonOutline}"/>-->
 
 
-                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.Rank, StringFormat='Rank: {0}'}" />
-                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.EstimatedPointsRank, StringFormat='Estimated Rank: {0}'}" />
-                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.EstimatedPoints, StringFormat='Estimated Points: {0}'}" />
-                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.Points, StringFormat='Points: {0}'}" />
-                <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Entry.Drafted, StringFormat='Drafted: {0}%'}" />
+                <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Entry.Rank, StringFormat='Rank: {0}'}" />
+                <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Entry.EstimatedPointsRank, StringFormat='Estimated Rank: {0}'}" />
+                <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Entry.EstimatedPoints, StringFormat='Estimated Points: {0}'}" />
+                <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Entry.Points, StringFormat='Points: {0}'}" />
+                <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Entry.Drafted, StringFormat='Drafted: {0}%'}" />
 
                 <CollectionView ItemsSource="{Binding EntryMembers}"
                         SelectionMode="None">
@@ -70,16 +75,16 @@
                         <DataTemplate x:DataType="models:AppEntryMemberModel">
 
                             <Grid    ColumnDefinitions="*,*"  >
-                                <Frame Padding="1"  Grid.ColumnSpan="2" BackgroundColor="{StaticResource Gray600}" >
+                                <Frame Padding="1"  Grid.ColumnSpan="2" BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" >
 
 
 
                                     <HorizontalStackLayout   Grid.ColumnSpan="2"  >
-                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />
-                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding EntryMemberPlayerName }" LineBreakMode="NoWrap"   />
+                                        <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />
+                                        <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding EntryMemberPlayerName }" LineBreakMode="NoWrap"   />
 
-                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Position}"/>
-                                        <Label TextColor="White" Style="{StaticResource LargeLabel}" Text="{Binding Player.Points}"/>
+                                        <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Position}"/>
+                                        <Label TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Player.Points}"/>
 
 
 

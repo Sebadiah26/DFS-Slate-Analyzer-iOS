@@ -7,10 +7,10 @@
     Title="DFS Analyzer">
 
     <Shell.TitleView>
-        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Start" >
+        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" >
             <Label Style="{StaticResource MediumHeaderLabel}" Text="DFS GAMEDAY LIVE"  HeightRequest="50" />
 
-            <Image Source="home.png" HeightRequest="50"  />
+            <!--<Image Source="home.png" HeightRequest="50"  />-->
         </HorizontalStackLayout>
     </Shell.TitleView>
 

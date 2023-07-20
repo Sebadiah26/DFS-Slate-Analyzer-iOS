@@ -43,7 +43,7 @@
 	
 	
 <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-		<CodesignKey>Apple Development: Created via API (8C7HHVMP49)</CodesignKey>
+		<CodesignKey>Apple Development: Created via API (DKDGL39ZXV)</CodesignKey>
 	</PropertyGroup>
 	
 	
@@ -72,8 +72,10 @@
 		<!--<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />-->
 		<MauiSplashScreen Include="Resources\Splash\splash2.PNG" />
 		<!-- Images -->
+		<MauiImage Include="Resources\Images\home.png" BaseSize="30,30" />
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+		
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
