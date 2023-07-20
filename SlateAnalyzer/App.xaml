@@ -62,7 +62,7 @@
 
          
             <Style x:Key="BaseLabel" TargetType="Label" >
-            <Setter Property="FontFamily" Value="CoopBl" />
+                <Setter Property="FontFamily" Value="CarterOne-Regular" />
                 <Setter Property="LineBreakMode" Value="NoWrap" />
                 <!--<Setter Property="TextColor" Value="{StaticResource LabelText}" />-->
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
@@ -71,7 +71,7 @@
 
             <Style x:Key="BaseHeaderLabel" TargetType="Label" >
                 <Setter Property="LineBreakMode" Value="NoWrap" />
-                <Setter Property="FontFamily" Value="CoopBl" />
+                <Setter Property="FontFamily" Value="CarterOne-Regular" />
                 <!--<Setter Property="FontFamily" Value="HelveticaLtStdBoldItalic" />-->
                 <!--<Setter Property="TextColor" Value="{StaticResource LabelText}" />-->
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
@@ -131,16 +131,17 @@
             <Setter Property="Background" Value="{StaticResource DarkBackground}" />
         </Style>-->
 
-        <!--<Style x:Key="ButtonOutline" TargetType="Button">
-            <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-            <Setter Property="TextColor" Value="{StaticResource Primary}" />
-            <Setter Property="BorderColor" Value="{StaticResource Primary}" />
-            <Setter Property="BorderWidth" Value="2" />
-            <Setter Property="HeightRequest" Value="40" />
-            <Setter Property="CornerRadius" Value="20" />
-        </Style>-->
-            
-        <!--<Style x:Key="CardView" TargetType="Frame">
+            <Style x:Key="ButtonOutline" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" />
+                <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="CornerRadius" Value="20" />
+            </Style>
+
+            <!--<Style x:Key="CardView" TargetType="Frame">
             <Setter Property="BorderColor" Value="#DDDDDD" />
             <Setter Property="HasShadow" Value="{OnPlatform iOS=false, MacCatalyst=false, Default=true}" />
             <Setter Property="Padding" Value="0" />

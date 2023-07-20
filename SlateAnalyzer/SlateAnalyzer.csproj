@@ -83,6 +83,11 @@
 	</ItemGroup>
 
 
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\CarterOne-Regular.ttf" />
+	</ItemGroup>
+
+
 
 
 	 

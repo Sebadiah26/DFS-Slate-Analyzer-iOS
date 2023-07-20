@@ -17,6 +17,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("HELVETICANEUELTSTD-BDIT.OTF", "HelveticaLtStdBoldItalic");
                 fonts.AddFont("COOPBL.ttf", "CoopBl");
+                fonts.AddFont("CarterOne-Regular.ttf", "CarterOne-Regular");
             });
         builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
         builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
