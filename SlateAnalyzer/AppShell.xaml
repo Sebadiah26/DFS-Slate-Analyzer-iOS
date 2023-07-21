@@ -6,15 +6,15 @@
     xmlns:view="clr-namespace:SlateAnalyzer.Views"
     Title="DFS Analyzer">
 
-    <Shell.TitleView>
-        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" >
-            <Label Style="{StaticResource MediumHeaderLabel}" Text="DFS GAMEDAY LIVE"  HeightRequest="50" />
+    <Shell.TitleView >
+      
+            <Label HorizontalOptions="CenterAndExpand" Style="{StaticResource MediumHeaderLabel}" Text="DFS GAMEDAY LIVE"  HeightRequest="30" />
 
             <!--<Image Source="home.png" HeightRequest="50"  />-->
-        </HorizontalStackLayout>
+       
     </Shell.TitleView>
 
-    <TabBar  >
+    <TabBar>
 
         <Tab Icon="home.png"   Title="Home"  >
             <ShellContent ContentTemplate="{DataTemplate view:MainPage}"/>
