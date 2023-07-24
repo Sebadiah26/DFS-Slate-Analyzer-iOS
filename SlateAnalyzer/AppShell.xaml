@@ -4,11 +4,27 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view="clr-namespace:SlateAnalyzer.Views"
-    Title="DFS Analyzer">
+    Title="DFS GameDay Live"
+        >
 
-    <Shell.TitleView >
-      
-            <Label HorizontalOptions="CenterAndExpand" Style="{StaticResource MediumHeaderLabel}" Text="DFS GAMEDAY LIVE"  HeightRequest="30" />
+    <!--<ShellContent Route="Home" Title="Home"    ContentTemplate="{DataTemplate view:MainPage}"/>
+    <ShellContent Route="Scores"  Title="Scores"  ContentTemplate="{DataTemplate view:EntriesPage}"/>-->
+
+    <Shell.TitleView  >
+        <Grid BackgroundColor="AliceBlue" MinimumHeightRequest="30" MinimumWidthRequest="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="1" Style="{StaticResource MediumHeaderLabel}" Text="DFS GAMEDAY LIVE"  HeightRequest="30" />
+            <!--<BoxView BackgroundColor="Yellow"/>
+            <BoxView Grid.Column="2" BackgroundColor="LightGoldenrodYellow"/>-->
+        </Grid>
+       
 
             <!--<Image Source="home.png" HeightRequest="50"  />-->
        
@@ -16,16 +32,14 @@
 
     <TabBar>
 
-        <Tab Icon="home.png"   Title="Home"  >
-            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"/>
+        <Tab Title="Home"  Icon="home.png">
+            <ShellContent   x:Name="Home"   ContentTemplate="{DataTemplate view:MainPage}"/>
         </Tab>
 
-        <Tab   Icon="home.png"     Title="Scores">
-            <ShellContent
-            Title="DFS Analyzer"
-           ContentTemplate="{DataTemplate view:EntriesPage}"
-            Route="EntriesPage" />  
-        </Tab>
+        <Tab Title="Scores" Icon="home.png" >
+            <ShellContent   x:Name="Scores"  ContentTemplate="{DataTemplate view:EntriesPage}"/>
+        </Tab> 
+
     </TabBar>
 
    

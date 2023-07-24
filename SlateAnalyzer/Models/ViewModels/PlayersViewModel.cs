@@ -6,19 +6,19 @@ using SlateAnalyzer.Models;
 
 namespace SlateAnalyzer.ViewModels;
 
-public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
+public partial class PlayersViewModel  : BaseViewModel, INotifyPropertyChanged
 {
-    public ObservableCollection<EntryModel> Entries { get; } = new();
+   
+    public ObservableCollection<ContestPlayerModel> ContestPlayers { get; } = new();
 
-    
     public ContestModel  contest { get; set; } = new();
-    public EntryModel Entry { get; set; } = new();
+    public ContestPlayerModel contestPlayer { get; set; } = new();
 
     ContestService contestService;
     IConnectivity connectivity;
     IGeolocation geolocation;
 
-   // public event PropertyChangedEventHandler PropertyChanged;
+  
 
     public ContestModel Contest
     {
@@ -31,7 +31,7 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
     }
 
 
-    public EntriesViewModel(ContestService contestService, IConnectivity connectivity, IGeolocation geolocation)
+    public PlayersViewModel(ContestService contestService, IConnectivity connectivity, IGeolocation geolocation)
     {
         Title = "DFS GameDay Live";
         this.contestService = contestService;
@@ -42,8 +42,8 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
 
         Shell.Current.Title = "DFS GameDay Live";
         Fetch();
-    }
 
+    }
 
     async void Fetch()
     {
@@ -63,13 +63,13 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
             this.Contest = await contestService.GetContest();
 
 
-            if (Entries.Count != 0)
-                Entries.Clear();
+        if (ContestPlayers.Count != 0)
+            ContestPlayers.Clear();
 
-            foreach (var entry in this.Contest.Entries)
-                Entries.Add(entry);
+        foreach (var contestPlayer in this.Contest.ContestPlayers.OrderByDescending(x => Decimal.Parse(x.Drafted.Replace("%", ""))))
+            ContestPlayers.Add(contestPlayer);
 
-            OnPropertyChanged(nameof(Entries));
+        OnPropertyChanged(nameof(ContestPlayers));
 
         }
         catch (Exception ex)
@@ -85,15 +85,15 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
 
     }
 
-    [RelayCommand]
-    async Task GoToDetails(EntryModel entry)
+        [RelayCommand]
+    async Task GoToDetails(ContestPlayerModel entry)
     {
         if (entry == null)
         return;
 
-        await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+        await Shell.Current.GoToAsync(nameof(PlayerDetailsPage), true, new Dictionary<string, object>
         {
-            {"Entry", entry }
+            {"ContestPlayer", contestPlayer }
         });
     }
 
@@ -107,7 +107,7 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
     //string textSize;
 
     [RelayCommand]
-    async Task GetEntriesAsync()
+    async Task GetPlayersAsync()
     {
         if (IsBusy)
             return;
@@ -130,11 +130,11 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
 
            
 
-            if (Entries.Count != 0)
-                Entries.Clear();
+            if (ContestPlayers.Count != 0)
+                ContestPlayers.Clear();
 
-            foreach(var entry in this.Contest.Entries)
-                Entries.Add(entry);
+            foreach(var contestPlayer in this.Contest.ContestPlayers)
+                ContestPlayers.Add(contestPlayer);
 
         }
         catch (Exception ex)
@@ -153,7 +153,7 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
     [RelayCommand]
     async Task GetClosestEntry()
     {
-        if (IsBusy || Entries.Count == 0)
+        if (IsBusy || ContestPlayers.Count == 0)
             return;
 
         try
@@ -173,7 +173,7 @@ public partial class EntriesViewModel  : BaseViewModel, INotifyPropertyChanged
             //var first = Entries.OrderBy(m => location.CalculateDistance(
             //    new Location(0, 0), DistanceUnits.Miles))
             //    .FirstOrDefault();
-            var first = Entries.FirstOrDefault();
+            var first = ContestPlayers.FirstOrDefault();
                 
 
            // await Shell.Current.DisplayAlert("", first.Name + " " +

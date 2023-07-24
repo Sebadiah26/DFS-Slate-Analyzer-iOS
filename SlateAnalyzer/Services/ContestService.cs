@@ -11,7 +11,7 @@ using static System.Net.WebRequestMethods;
 
 namespace SlateAnalyzer.Services;
 
-public class ContestService
+public class ContestService : ObservableObject
 {
     HttpClient httpClient;
     //ContestController contestController;    
@@ -22,21 +22,35 @@ public class ContestService
     }
 
     List<EntryModel> entryList;
-    ContestModel contestModel = new ContestModel();
+    public ContestModel contest = new ContestModel();
+
+    public ContestModel Contest
+    {
+        get => this.contest;
+        private set
+        {
+            this.contest = value;
+            OnPropertyChanged();
+        }
+    }
+
 
     public async Task<ContestModel> GetContest()
     {
-        if (contestModel.Entries.Count > 0)
-            return contestModel;
+        if (contest.Entries.Count > 0)
+            return contest;
        
         // Online
         string baseURL = "https://www.craigkielinski.com/api/";
         //baseURL = "http://localhost:44404/";
 
-        contestModel.ContestID = 0;
-        string path = baseURL + "contest/getcontest/" + contestModel.ContestID + "/" + "02-23-23" + "/" + "blah";
+        contest.ContestID = 0;
+        string path = baseURL + "contest/getcontest/" + contest.ContestID + "/" + "02-23-23" + "/" + "blah";
    
         var response = await httpClient.GetAsync(path);
+
+        Contest = await response.EnsureSuccessStatusCode().Content.ReadAsAsync<ContestModel>();
+
 
         //var response2 = await response.ReadContentAs<ContestModel>();
 
@@ -76,7 +90,7 @@ public class ContestService
         //var contents = await reader.ReadToEndAsync();
         //monkeyList = JsonSerializer.Deserialize(contents, MonkeyContext.Default.ListMonkey);
 
-        return (await response.EnsureSuccessStatusCode().Content.ReadAsAsync<ContestModel>()); 
+        return Contest; 
     }
 }
 //        //[HttpGet(Name = "GetContest")]

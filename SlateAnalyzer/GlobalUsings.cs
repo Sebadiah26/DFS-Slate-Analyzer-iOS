@@ -2,7 +2,7 @@
 global using CommunityToolkit.Mvvm.Input;
 global using SlateAnalyzer.Services;
 global using SlateAnalyzer.ViewModels;
-global using SlateAnalyzer.Views;
+global using SlateAnalyzer.Pages;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Diagnostics;

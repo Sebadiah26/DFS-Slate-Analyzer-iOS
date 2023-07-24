@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SlateAnalyzer"
+              xmlns:page="clr-namespace:SlateAnalyzer.Pages"
              x:Class="SlateAnalyzer.App">
     
     <Application.Resources>
@@ -139,7 +140,7 @@
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="CornerRadius" Value="20" />
-                <Setter Property="Shadow" Value="20" />
+               
                
             </Style>
 
@@ -155,4 +156,51 @@
             
         </ResourceDictionary>
     </Application.Resources>
+
+    <Application.MainPage>
+        <Shell BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+
+            <Shell.TitleView  >
+                <Grid Padding="0,0" HorizontalOptions="FillAndExpand" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" MinimumHeightRequest="30" MinimumWidthRequest="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="1" Style="{StaticResource MediumHeaderLabel}" Text="DFS GAMEDAY LIVE"  HeightRequest="30" />
+                
+                </Grid>
+
+
+
+            </Shell.TitleView>
+            <TabBar x:Name="Tabs">
+
+                    <Tab Title="Home"  Icon="home.png">
+                    <ShellContent   x:Name="Home"   ContentTemplate="{DataTemplate page:MainPage}"/>
+                    </Tab>
+
+                <Tab Title="Players" Icon="players" >
+                    <ShellContent   x:Name="Players"  ContentTemplate="{DataTemplate page:PlayersPage}"/>
+                </Tab>
+
+                <Tab Title="Web" Icon="webpage" >
+                    <ShellContent   x:Name="Web"  ContentTemplate="{DataTemplate page:WebPage}"/>
+                </Tab>
+
+                <Tab Title="Scores" Icon="leaderboard" >
+                    <ShellContent   x:Name="Scores"  ContentTemplate="{DataTemplate page:EntriesPage}"/>
+                    </Tab>
+
+                <Tab Title="Settings" Icon="tab_settings.png" >
+                    <ShellContent   x:Name="Settings"  ContentTemplate="{DataTemplate page:EntriesPage}"/>
+                </Tab>
+
+            
+                    </TabBar>
+        </Shell>
+    </Application.MainPage>
 </Application>

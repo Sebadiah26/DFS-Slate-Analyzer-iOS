@@ -43,7 +43,7 @@
 	
 	
 <PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-		<CodesignKey>Apple Development: Created via API (DKDGL39ZXV)</CodesignKey>
+		<CodesignKey>Apple Development: Created via API (8C7HHVMP49)</CodesignKey>
 	</PropertyGroup>
 	
 	
@@ -70,11 +70,13 @@
 		<MauiIcon Include="Resources\AppIcon\appicon2.PNG" />
 		<!-- Splash Screen -->
 		<!--<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />-->
-		<MauiSplashScreen Include="Resources\Splash\splash2.PNG" />
+		<!--<MauiSplashScreen Include="Resources\Splash\splash2.PNG" />-->
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\home.png" BaseSize="30,30" />
+		<MauiImage Include="Resources\Images\leaderboard.svg" BaseSize="30,30" />
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+		<MauiImage Update="Resources\Images\players.svg" BaseSize="30,30" />
 		
 
 		<!-- Custom Fonts -->
@@ -86,9 +88,18 @@
 
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\CarterOne-Regular.ttf" />
+	  <Compile Remove="AppShell.xaml.cs" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <MauiXaml Remove="AppShell.xaml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\webpage.svg" />
+	</ItemGroup>
 
 
 
@@ -117,19 +128,40 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\EntriesPage.xaml.cs">
+	  <Compile Update="Pages\PlayerDetailsPage.xaml.cs">
+	    <DependentUpon>PlayerDetailsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\PlayersPage.xaml.cs">
+	    <DependentUpon>PlayersPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\EntriesPage.xaml.cs">
 	    <DependentUpon>EntriesPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\WebPage.xaml.cs">
+	    <DependentUpon>WebPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\DetailsPage.xaml">
+	  <MauiXaml Update="Pages\PlayerDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\EntriesPage.xaml">
+	  <MauiXaml Update="Pages\DetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MainPage.xaml">
+	  <MauiXaml Update="Pages\PlayersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\EntriesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\WebPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\WidgetsPanel.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

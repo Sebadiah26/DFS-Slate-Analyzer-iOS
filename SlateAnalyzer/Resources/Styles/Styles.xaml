@@ -40,7 +40,7 @@
         <Setter Property="FontFamily" Value="CarterOne-Regular"/>
         <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" />
         <Setter Property="BorderWidth" Value="2" />
-        <Setter Property="Shadow" Value="20" />
+       
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="CornerRadius" Value="20"/>
         <Setter Property="Padding" Value="14,10"/>
@@ -387,7 +387,7 @@
     </Style>-->
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
-        <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
+        <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource Blue050Accent}}" />
         <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" />
         <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource  DarkBackground}, Dark={StaticResource LightBackground}}" />
         <!--<Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />

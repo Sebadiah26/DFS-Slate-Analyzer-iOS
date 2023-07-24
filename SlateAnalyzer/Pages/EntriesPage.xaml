@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Shell.BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" 
+              x:Class="SlateAnalyzer.Pages.EntriesPage"
+               xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:model="clr-namespace:SlateAnalyzer.Models"
+            xmlns:viewmodel="clr-namespace:SlateAnalyzer.ViewModels"
+            xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             x:DataType="viewmodel:EntriesViewModel"
+              >
+   
+        <Shell.TitleView >
+        <Grid  BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" MinimumHeightRequest="30" MinimumWidthRequest="30">
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Grid.Column="1" Style="{StaticResource MediumHeaderLabel}" Text="DFS GAMEDAY LIVE"  HeightRequest="30" />
+
+        </Grid>
+
+    </Shell.TitleView>
+   
+
+    <Grid  
+        ColumnDefinitions="*,*"
+        ColumnSpacing="0"
+       RowDefinitions="80, 6*"
+        RowSpacing="0"
+        BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+
+      
+
+        <VerticalStackLayout Padding="0,0" Grid.Row="0"  Grid.ColumnSpan="2" >
+            <Label   Grid.Row="0" Padding="0"  HorizontalOptions="Center"  Style="{StaticResource MediumHeaderLabel}"  TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"    LineBreakMode="NoWrap"
+            Grid.ColumnSpan="2" Text="{Binding Contest.Name, StringFormat='{0}'}" MinimumHeightRequest="30" />
+            <Label  HorizontalOptions="CenterAndExpand"  VerticalOptions="Center" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" 
+                   Style="{StaticResource LargeLabel}" Text="Current Standings" LineBreakMode="NoWrap"   />
+
+        </VerticalStackLayout>
+
+        
+        
+        <RefreshView    RefreshColor="Orange"
+            Grid.ColumnSpan="2" Grid.Row="1"
+            Command="{Binding GetEntriesCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            
+            
+            <ContentView Grid.ColumnSpan="2" Padding="2,0" Margin="5"   BackgroundColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource Gray600}}">
+
+                <CollectionView Grid.ColumnSpan="2" EmptyView="No items to display" ItemsSource="{Binding Entries}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate  >
+                <DataTemplate x:DataType="model:AppEntryModel">
+
+                            <Frame HeightRequest="80" BorderColor="{StaticResource Blue200Accent}"  Padding="1,1" Grid.ColumnSpan="3" BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" >
+                            <Frame.GestureRecognizers >
+                                <TapGestureRecognizer 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EntriesViewModel}}, Path=GoToDetailsCommand}"
+                                                CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                           
+                                <Grid  Grid.ColumnSpan="2"    Grid.Row="1" Padding="2,1"  ColumnDefinitions="1*,4*,1* "  RowDefinitions="1*,1*" >
+
+                                    <Label  BackgroundColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray600}}" Grid.Row="0"   Grid.Column="0"  FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"   Style="{StaticResource SmallLabel}" Text="{Binding Rank, StringFormat='#{0}'}" LineBreakMode="NoWrap"   />
+                                    <Label BackgroundColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray600}}"
+                                           Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                           TextColor="{AppThemeBinding
+                                        Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" 
+                                            Style="{StaticResource LargeLabel}" Text="{Binding Name}" LineBreakMode="NoWrap"   />
+
+                                    <Label BackgroundColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray600}}" Grid.Row="0"  Grid.Column="2" FontAttributes="Bold"
+                                                TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" 
+                                                Style="{StaticResource MediumLabel}" Text="{Binding Points}"/>
+
+
+                                    <Label BackgroundColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray600}}" Grid.Row="1" Grid.Column="0"  TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"   Style="{StaticResource SmallLabel}" FontAttributes="Italic"  Text="{Binding EstimatedPointsRank, StringFormat='Est. #{0}'}" LineBreakMode="NoWrap"   />
+                                    <Label BackgroundColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray600}}" Grid.Row="1" Grid.Column="2" FontAttributes="Italic" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource SmallLabel}" Text="{Binding EstimatedPoints, StringFormat='Est. {0:F2}'}"/>
+                                </Grid>
+                       </Frame>
+                   
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </ContentView>
+    </RefreshView>
+        
+        
+        <!--<Button 
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="8"
+            Command="{Binding GetEntriesCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            Style="{StaticResource ButtonOutline}"
+            Text="Live Standings" />
+        <Button
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="8"
+            Command="{Binding GetClosestEntryCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            Style="{StaticResource ButtonOutline}"
+            Text="" />
+        <ActivityIndicator
+            Grid.Row="2"
+            
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Fill"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            Color="{StaticResource Primary}"
+            VerticalOptions="Center" />-->
+    </Grid>
+</ContentPage>
+
+
+<!--<ContentPage.Resources>
+    <ResourceDictionary>
+        <local:StringToColorConverter x:Key="ColorConverter" />
+    </ResourceDictionary>
+</ContentPage.Resources>-->
+
+<!--<Label Text="{Binding Name}" TextColor="{Binding TextColor, Converter = {StaticResource ColorConverter}}"/>-->
+    
+    <!--public class StringToColorConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var color = value.ToString();
+        switch (color)
+        {
+            case "Green":
+                return Colors.Green;
+            case "Red":
+                return Colors.Red;
+            default:
+                return Colors.Yellow;
+        }
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return null;
+    }
+}-->
+    

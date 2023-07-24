@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="SlateAnalyzer.Views.DetailsPage"
+    x:Class="SlateAnalyzer.Pages.PlayerDetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:models="clr-namespace:SlateAnalyzer.Models"
     xmlns:viewModels="clr-namespace:SlateAnalyzer.ViewModels"
      xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     Title="{Binding Entry.Name}"
-    x:DataType="viewModels:EntryDetailsViewModel">
+    x:DataType="viewModels:PlayerDetailsViewModel">
     
     <ContentPage.BindingContext>
-        <viewModels:EntryDetailsViewModel />
+        <viewModels:PlayerDetailsViewModel />
     </ContentPage.BindingContext>
 
     <ScrollView BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
@@ -72,6 +72,33 @@
 
                 <CollectionView Margin="0,20" ItemsSource="{Binding EntryMembers}"
                         SelectionMode="None">
+                    <CollectionView.Header >
+                       
+                        <Grid  Grid.ColumnSpan="2"      Grid.Row="2" Padding="5,3"  ColumnDefinitions="1*,3*,1*, 1*, 1* "  RowDefinitions="1*" >
+
+                            <!--<Label Grid.Column="0"  TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />-->
+                            <Label Grid.Column="0" TextDecorations="Underline" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource MediumLabel}" Text="Pos"/>
+                            <Label Grid.Column="1" TextDecorations="Underline"
+                                               TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  
+                                               Style="{StaticResource MediumLabel}" 
+                                               Text="Player" 
+                                               LineBreakMode="NoWrap"   />
+
+                            <Label Grid.Column="2" TextDecorations="Underline" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" 
+                                   Style="{StaticResource MediumLabel}" Text="Salary"/>
+                            <Label Grid.Column="3" TextDecorations="Underline" HorizontalOptions="End" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" 
+                                   Style="{StaticResource MediumLabel}" Text="Pts"/>
+                            <Label Grid.Column="4" TextDecorations="Underline" HorizontalOptions="End" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}" 
+                                   Style="{StaticResource MediumLabel}" Text="Est."/>
+                           
+
+
+                            </Grid>
+                           
+                        
+
+                    </CollectionView.Header>
+                   
                     <CollectionView.ItemTemplate Padding="0" Spacing="0" >
                         <DataTemplate x:DataType="models:AppEntryMemberModel">
 
@@ -80,14 +107,19 @@
 
 
 
-                                    <Grid  Grid.ColumnSpan="2"    Grid.Row="2" Padding="0,0"  ColumnDefinitions="1*,3*,1*, 1*, 1* "  RowDefinitions="1*" >
+                                    <Grid  Grid.ColumnSpan="2"    Grid.Row="2" Padding="5,0"  ColumnDefinitions="1*,3*,1*, 1*, 1* "  RowDefinitions="1*" >
 
-                                        <Label Grid.Column="0"  TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />
-                                        <Label Grid.Column="1" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding EntryMemberPlayerName }" LineBreakMode="NoWrap"   />
+                                        <!--<Label Grid.Column="0"  TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding LineupSlot}" LineBreakMode="NoWrap"   />-->
+                                        <Label Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource MediumLabel}" Text="{Binding Position}"/>
+                                        <Label Grid.Column="1" 
+                                               TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  
+                                               Style="{StaticResource MediumLabel}" 
+                                               Text="{Binding EntryMemberPlayerName }" 
+                                               LineBreakMode="NoWrap"   />
 
-                                        <Label Grid.Column="2" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Position}"/>
-                                        <Label Grid.Column="3" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Player.Points, StringFormat='{0:F0}'}"/>
-                                        <Label Grid.Column="4" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource LargeLabel}" Text="{Binding Player.EstimatedPoints, StringFormat='{0:F0}'}"/>
+                                        <Label Grid.Column="2" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource MediumLabel}" Text="{Binding Player.Salary}"/>
+                                        <Label Grid.Column="3" HorizontalOptions="End" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource MediumLabel}" Text="{Binding Player.Points, StringFormat='{0:F0}'}"/>
+                                        <Label Grid.Column="4" HorizontalOptions="End" TextColor="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"  Style="{StaticResource MediumLabel}" Text="{Binding Player.EstimatedPoints, StringFormat='{0:F0}'}"/>
 
 
 
